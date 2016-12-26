@@ -17,3 +17,8 @@ let rec insert key tree =
         else
             Tree(l, key, r)
 
+let rec isMember targetKey tree =
+    match tree with
+    | Leaf -> false
+    | Tree(left, key, right) ->
+        isMember key left || key = targetKey || isMember key right
