@@ -22,8 +22,3 @@ let rec isMember targetKey tree =
     | Leaf -> false
     | Tree(left, key, right) ->
         isMember key left || key = targetKey || isMember key right
-
-let rec lookup targetKey tree =
-    match tree with
-    | Leaf -> None
-    | Tree(l, k, r)
