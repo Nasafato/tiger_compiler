@@ -20,7 +20,13 @@ let rec insert tree key value =
 let rec lookup targetKey tree =
     match tree with
     | Leaf -> None
-    | Tree(l, k, v, r) -> Some(v)
+    | Tree(l, k, v, r) ->
+        if targetKey < k then
+            lookup targetKey l
+        else if targetKey > k then
+            lookup targetKey r
+        else
+            Some v
 
 
 
