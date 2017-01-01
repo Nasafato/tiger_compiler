@@ -9,7 +9,7 @@ let rec insert key value tree =
     match tree with
     | Leaf ->
         Tree(Leaf, key, value, Leaf)
-    | Tree(l, k, v, r) ->
+    | Tree(l, k, _, r) ->
         if key < k then
             insert key value l
         else if key > k then
