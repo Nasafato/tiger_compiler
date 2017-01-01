@@ -1,6 +1,7 @@
 open Core.Std
 
 
+
 type id = string
 type binOp = Plus | Minus | Times | Div
 
@@ -20,6 +21,31 @@ type table = assignment list
 
 (*// a := 5 + 3; b := ( print (a, a-1), 10 * a); print(b)*)
 (*// prog = a:= 5 + 3;*)
+
+type linkedList =
+    | EndNode
+    | Node of (id * int) * linkedList
+
+let addToLinkedList ll id value =
+    match ll with
+    | EndNode ->
+        Node( (id, value), EndNode )
+    | Node _ ->
+        Node( (id, value), ll )
+
+let rec printLinkedList ll =
+    match ll with
+    | EndNode -> ()
+    | Node ( (i, v), rest) ->
+        let () = Printf.printf "%s = %i\n" i v in
+        printLinkedList rest
+
+let () =
+    let l1 = addToLinkedList EndNode "a" 3 in
+    let l2 = addToLinkedList l1 "b" 5 in
+    let l3 = addToLinkedList l2 "a" 5 in
+    let l4 = addToLinkedList l3 "c" 6 in
+    printLinkedList l4
 
 let prog =
     CompoundStmt(AssignStmt("a", OpExp(NumExp 5, Plus, NumExp 3)),
