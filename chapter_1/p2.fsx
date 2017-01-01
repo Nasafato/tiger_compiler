@@ -62,10 +62,10 @@ and interpExp (expression:Exp) (table:Table):(int * Table) =
         let x, t1 = interpExp e1 table
         let y, t2 = interpExp e2 t1
         match binOp with
-        | Plus -> (x + y, table)
-        | Minus -> (x - y, table)
-        | Times -> (x * y, table)
-        | Div -> (x / y, table)
+        | Plus -> (x + y, t2)
+        | Minus -> (x - y, t2)
+        | Times -> (x * y, t2)
+        | Div -> (x / y, t2)
     | EseqExp(stmt, exp) ->
         let newTable = interpStmt stmt table
         let x, newTable = interpExp exp newTable
